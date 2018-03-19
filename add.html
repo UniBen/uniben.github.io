@@ -1,0 +1,90 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <style>
+            body {
+                text-align: center;
+                background: #ff8758;
+                color: #FFF;
+                animation: 3s ease-out 0s 1 fadeIn;
+            }
+
+            #map {
+                width: 100%;
+                height: 400px;
+            }
+        </style>
+
+        <div style="padding: 40px; width: calc(100% - 80px); height: 100%; position: absolute; display: flex; justify-content: center; align-items: center; flex-direction: column; font-family: 'Helvetica Neue'; line-height: 1.2;">
+            <div id="map"></div>
+        </div>
+
+        <script>
+            // This example creates an interactive map which constructs a polyline based on
+            // user clicks. Note that the polyline only appears once its path property
+            // contains two LatLng coordinates.
+
+            var poly;
+            var map;
+
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 16,
+                    center: {lat: 53.6439625, lng: -1.7802917}
+                });
+
+                poly = new google.maps.Polyline({
+                    strokeColor: '#000000',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 3
+                });
+                poly.setMap(map);
+
+                // Add a listener for the click event
+                map.addListener('click', addLatLng);
+            }
+
+            // Handles click events on a map, and adds a new point to the Polyline.
+            function addLatLng(event) {
+                var path = poly.getPath();
+
+                // Because path is an MVCArray, we can simply append a new coordinate
+                // and it will automatically appear.
+                path.push(event.latLng);
+            }
+        </script>
+
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD0Mgi5mNS6dxsKe-Bcko5yB4hIjapunU&callback=initMap"></script>
+
+        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    </body>
+</html>

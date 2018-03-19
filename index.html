@@ -1,0 +1,130 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <style>
+
+            #timer {
+                font-weight: 600 ;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            a {
+                text-decoration: none;
+                color: #FFF;
+                font-weight: 600;
+                animation: 1s ease-out 0s 1 slideInFromLeft;
+                background-color: #e04007;
+                padding: 15px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                margin: 5px;
+                text-transform: uppercase;
+                display: inline-block;
+                font-size: 0.8rem;
+            }
+
+            body {
+                text-align: center;
+                background: #ff8758;
+                color: #FFF;
+                animation: 3s ease-out 0s 1 fadeIn;
+            }
+
+            @keyframes fadeIn {
+                0% {
+                    background: #FFF;
+                }
+                100% {
+                    background: #ff8758;
+                }
+            }
+
+            @keyframes slideInFromLeft {
+                0% {
+                    transform: translateY(-50px);
+                }
+                100% {
+                    transform: translateX(0px);
+                }
+            }
+        </style>
+
+        <!-- Add your site or application content here -->
+        <div style="padding: 40px; width: calc(100% - 80px); height: 100%; position: absolute; display: flex; justify-content: center; align-items: center; flex-direction: column; font-family: 'Helvetica Neue'; line-height: 1.2;">
+            <img src="https://www.iconsdb.com/icons/preview/soylent-red/door-8-xxl.png" alt="RedDoor" width="100" style="margin-bottom: 5rem;">
+
+            <p>Currently attending: <strong>CFM105</strong>. You have been at Uni for: </p>
+            <p id="timer_container" style="margin-top: 10px;">
+                <div style="display: flex; align-items: center;">
+                    <span id="timer" style="font-size: 60px; margin: 0 10px;">0</span>
+                    <span id="timer_measurement">seconds</span>.
+                </div>
+
+
+                <span id="timer_measurement_minute_seconds"></span>
+            </p>
+
+            <div style="margin-top: 175px; display: flex;">
+                <a href="./attendance.html">View attendance</a>
+                <a href="./logout.html">Log out</a>
+            </div>
+        </div>
+
+        <script>
+            var time = 0;
+            var timer = document.getElementById("timer");
+            var timer_measurement = document.getElementById("timer_measurement");
+            var timer_measurement_minute_seconds = document.getElementById("timer_measurement_minute_seconds");
+
+            window.setInterval(function () {
+                time++;
+                timer.innerHTML = time >= 60 ? Math.floor(time/60) : time;
+
+                if (time >= 60) {
+                    timer_measurement_minute_seconds.innerHTML = time - (Math.floor(time/60) * 60) + ' seconds';
+                }
+
+                if (time >= 120) {
+                    timer_measurement.innerHTML = "minutes";
+                } else if (time >= 60) {
+                    timer_measurement.innerHTML = "minute";
+                }
+            }, 1000)
+        </script>
+
+        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    </body>
+</html>
